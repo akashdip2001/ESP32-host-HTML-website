@@ -144,3 +144,63 @@ in Bionary [index_html_gz.h (Generated header file):]
 goTo [GitHub:](https://github.com/me-no-dev/arduino-esp32fs-plugin) => [Releases](https://github.com/me-no-dev/arduino-esp32fs-plugin/releases/tag/1.1) => download ESP32FS-1.1.zip <br />
 IDE => Files => Preferences => ScatchBook Location => create filder "tools" => copy-pest the folder "ESP32FS" => Restart the IDE
 
+```cpp
+#include <WiFi.h>
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
+#include <SPIFFS.h>
+
+// Replace with your network credentials
+const char* ssid = "spa";
+const char* password = "12345678";
+
+AsyncWebServer server(80);
+
+void setup() {
+    Serial.begin(115200);
+    delay(1000); // Allow time for serial monitor to open
+
+    // Connect to Wi-Fi
+    Serial.println();
+    Serial.print("Connecting to Wi-Fi...");
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(1000);
+        Serial.print(".");
+    }
+    Serial.println("Connected to WiFi");
+
+    // Print ESP32 local IP address
+    Serial.print("IP Address: ");
+    Serial.println(WiFi.localIP());
+
+    // Initialize SPIFFS
+    if (!SPIFFS.begin(true)) {
+        Serial.println("An error occurred while mounting SPIFFS");
+        return;
+    }
+    Serial.println("SPIFFS initialized");
+
+    // Route for root / web page
+    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+        request->send(SPIFFS, "/index.html", "text/html");
+    });
+
+    // Start server
+    server.begin();
+    Serial.println("HTTP server started");
+}
+
+void loop() {
+    // Keep the server running
+    // Not much to do here, but keep the server alive
+}
+```
+output
+
+```
+Connecting to Wi-Fi........Connected to WiFi
+IP Address: 192.168.150.165
+SPIFFS initialized
+HTTP server started
+```
