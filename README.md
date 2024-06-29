@@ -48,6 +48,15 @@ void loop() {
 
 # HTML => PowerShell with .NET Classes
 
+```kotlin
+/YourSketchFolder
+├── YourSketchName.ino
+├── data
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+```
+
 move => Arduino IDE => File => Preferences => SketchBook Location => where "sketch_jun28a.ino" 
 & convart the index.html => index_html_gz.h using PowerShell
 
@@ -122,6 +131,12 @@ void loop() {
 <p float="left">
   <img src="img/2 (5).png" width="45%" />
   <img src="img/2 (6).png" width="45%" />
+</p>
+
+in Bionary [index_html_gz.h (Generated header file):]
+
+<p float="left">
+  <img src="img/2 (7).png" width="100%" />
 </p>
 
 # HTML in ESP32's SPIFFS (SPI Flash File System)
