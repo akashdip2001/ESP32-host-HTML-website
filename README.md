@@ -42,8 +42,8 @@ void loop() {
 ```
 
 <p float="left">
-  <img src="1 (1).png" width="45%" />
-  <img src="1 (2).png" width="45%" />
+  <img src="img/1 (1).png" width="45%" />
+  <img src="img/1 (2).png" width="45%" />
 </p>
 
 # HTML => PowerShell with .NET Classes
@@ -52,8 +52,8 @@ move => Arduino IDE => File => Preferences => SketchBook Location => where "sket
 & convart the index.html => index_html_gz.h using PowerShell
 
 <p float="left">
-  <img src="2 (3).png" width="45%" />
-  <img src="2 (4).png" width="45%" />
+  <img src="img/2 (3).png" width="45%" />
+  <img src="img/2 (4).png" width="45%" />
 </p>
 
 ```powershell
@@ -76,8 +76,8 @@ $hexString += "const int index_html_gz_len = sizeof(index_html_gz) / sizeof(inde
 $hexString | Out-File -FilePath $outputFile -Encoding ASCII
 ```
 <p float="left">
-  <img src="2 (1).png" width="45%" />
-  <img src="2 (2).png" width="45%" />
+  <img src="img/2 (1).png" width="45%" />
+  <img src="img/2 (2).png" width="45%" />
 </p>
 
 ```cpp
@@ -120,8 +120,8 @@ void loop() {
 }
 ```
 <p float="left">
-  <img src="2 (5).png" width="45%" />
-  <img src="2 (6).png" width="45%" />
+  <img src="img/2 (5).png" width="45%" />
+  <img src="img/2 (6).png" width="45%" />
 </p>
 
 # HTML in ESP32's SPIFFS (SPI Flash File System)
