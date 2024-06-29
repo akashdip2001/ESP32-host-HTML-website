@@ -144,6 +144,24 @@ in Bionary [index_html_gz.h (Generated header file):]
 goTo [GitHub:](https://github.com/me-no-dev/arduino-esp32fs-plugin) => [Releases](https://github.com/me-no-dev/arduino-esp32fs-plugin/releases/tag/1.1) => download ESP32FS-1.1.zip <br />
 IDE => Files => Preferences => ScatchBook Location => create filder "tools" => copy-pest the folder "ESP32FS" => Restart the IDE
 
+If you're encountering a "404 Not Found" error when trying to access `http://192.168.150.165/`, it typically indicates that the server (your ESP32 in this case) is running and reachable, but it couldn't find the requested resource (`index.html` or any other file you specified). Here are a few steps to troubleshoot and resolve this issue:
+
+### Steps to Troubleshoot:
+
+1. **Check SPIFFS Upload:**
+   - Ensure that you have successfully uploaded your `index.html` file and any other necessary files to SPIFFS. Use the SPIFFS upload tool in Arduino IDE or PlatformIO to verify that the files are indeed transferred to the ESP32.
+
+2. **Verify File Path:**
+   - Double-check the path and filename used in your `server.on("/", ...)` handler. Ensure that it matches exactly with the file name (`index.html`) and path in SPIFFS where you uploaded it.
+
+3. **Serial Monitor Output:**
+   - Review the serial monitor output for any errors or messages indicating issues with SPIFFS initialization or file serving.
+
+4. **HTTP Request Handling:**
+   - Confirm that the server is correctly handling HTTP requests. In your case, the handler should respond to requests to the root path ("/") with the `index.html` file.
+
+### Adjusted Code Example:
+
 ```cpp
 #include <WiFi.h>
 #include <AsyncTCP.h>
@@ -151,8 +169,8 @@ IDE => Files => Preferences => ScatchBook Location => create filder "tools" => c
 #include <SPIFFS.h>
 
 // Replace with your network credentials
-const char* ssid = "spa";
-const char* password = "12345678";
+const char* ssid = "your_SSID";
+const char* password = "your_PASSWORD";
 
 AsyncWebServer server(80);
 
@@ -196,6 +214,16 @@ void loop() {
     // Not much to do here, but keep the server alive
 }
 ```
+
+### Additional Checks:
+
+- **Clear Cache:** Sometimes browsers cache 404 errors. Clear your browser cache or try accessing the IP address from a different browser or incognito/private window.
+  
+- **Check IP Address:** Ensure that the IP address printed in the serial monitor (`Serial.println(WiFi.localIP())`) matches the one you're trying to access in the browser.
+
+- **Network Configuration:** If the problem persists, check your network configuration and ensure there are no firewall rules or network settings preventing access to the ESP32.
+
+By following these steps and ensuring everything is configured correctly, you should be able to resolve the "404 Not Found" error and successfully access your ESP32 hosted web page at `http://192.168.150.165/`. <br />
 output
 
 ```
