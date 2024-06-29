@@ -57,7 +57,7 @@ void loop() {
 │   └── script.js
 ```
 
-move => Arduino IDE => File => Preferences => SketchBook Location => where "sketch_jun28a.ino" 
+move => Arduino IDE => File => Preferences => SketchBook Location => where "sketch_jun28a.ino" <br />
 & convart the index.html => index_html_gz.h using PowerShell
 
 <p float="left">
@@ -140,3 +140,7 @@ in Bionary [index_html_gz.h (Generated header file):]
 </p>
 
 # HTML in ESP32's SPIFFS (SPI Flash File System)
+
+goTo [GitHub:](https://github.com/me-no-dev/arduino-esp32fs-plugin) => [Releases](https://github.com/me-no-dev/arduino-esp32fs-plugin/releases/tag/1.1) => download ESP32FS-1.1.zip <br />
+IDE => Files => Preferences => ScatchBook Location => create filder "tools" => copy-pest the folder "ESP32FS" => Restart the IDE
+
