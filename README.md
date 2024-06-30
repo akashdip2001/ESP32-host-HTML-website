@@ -154,7 +154,7 @@ advantage of this process - it's suitable for using javascript
 goTo [GitHub:](https://github.com/me-no-dev/arduino-esp32fs-plugin) => [Releases](https://github.com/me-no-dev/arduino-esp32fs-plugin/releases/tag/1.1) => download ESP32FS-1.1.zip <br />
 IDE => Files => Preferences => ScatchBook Location => create filder "tools" => copy-pest the folder 📂"ESP32FS" => Restart the IDE
 
-# guide [video](https://youtu.be/0ox1oF9pSus)
+# guide [video_1](https://youtu.be/0ox1oF9pSus) , [video_2](https://youtu.be/LcMVoKb1NhE)
 
 If you're encountering a "404 Not Found" error when trying to access `http://192.168.150.165/`, it typically indicates that the server (your ESP32 in this case) is running and reachable, but it couldn't find the requested resource (`index.html` or any other file you specified). Here are a few steps to troubleshoot and resolve this issue:
 
