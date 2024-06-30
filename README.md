@@ -48,6 +48,8 @@ void loop() {
   <img src="img/1 (2).png" width="49%" />
 </p>
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 # ✅ HTML => PowerShell with .NET Classes
 
 ```kotlin
@@ -145,6 +147,8 @@ in Bionary [index_html_gz.h (Generated header file):]
 
 advantage of this process - it's suitable for using javascript 
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 # ❌ HTML in ESP32's SPIFFS (SPI Flash File System)
 
 goTo [GitHub:](https://github.com/me-no-dev/arduino-esp32fs-plugin) => [Releases](https://github.com/me-no-dev/arduino-esp32fs-plugin/releases/tag/1.1) => download ESP32FS-1.1.zip <br />
@@ -240,3 +244,5 @@ IP Address: 192.168.150.165
 SPIFFS initialized
 HTTP server started
 ```
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
