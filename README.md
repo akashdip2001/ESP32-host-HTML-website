@@ -1,6 +1,6 @@
 # ESP32-host-HTML-website
 
-# HTML in CPP
+# ✅ HTML in CPP
 
 ```cpp
 #include <WiFi.h>
@@ -46,7 +46,7 @@ void loop() {
   <img src="img/1 (2).png" width="49%" />
 </p>
 
-# HTML => PowerShell with .NET Classes
+# ✅ HTML => PowerShell with .NET Classes
 
 ```kotlin
 /YourSketchFolder
@@ -57,7 +57,7 @@ void loop() {
 │   └── script.js
 ```
 
-move => Arduino IDE => File => Preferences => SketchBook Location => where "sketch_jun28a.ino" <br />
+move => Arduino IDE => File => Preferences => SketchBook Location => where 📁 "sketch_jun28a.ino" <br />
 & convart the index.html => index_html_gz.h using PowerShell
 
 <p float="left">
@@ -139,10 +139,10 @@ in Bionary [index_html_gz.h (Generated header file):]
   <img src="img/2 (6).png" width="49%" />
 </p>
 
-# HTML in ESP32's SPIFFS (SPI Flash File System)
+# ❌ HTML in ESP32's SPIFFS (SPI Flash File System)
 
 goTo [GitHub:](https://github.com/me-no-dev/arduino-esp32fs-plugin) => [Releases](https://github.com/me-no-dev/arduino-esp32fs-plugin/releases/tag/1.1) => download ESP32FS-1.1.zip <br />
-IDE => Files => Preferences => ScatchBook Location => create filder "tools" => copy-pest the folder "ESP32FS" => Restart the IDE
+IDE => Files => Preferences => ScatchBook Location => create filder "tools" => copy-pest the folder 📂"ESP32FS" => Restart the IDE
 
 If you're encountering a "404 Not Found" error when trying to access `http://192.168.150.165/`, it typically indicates that the server (your ESP32 in this case) is running and reachable, but it couldn't find the requested resource (`index.html` or any other file you specified). Here are a few steps to troubleshoot and resolve this issue:
 
