@@ -41,6 +41,8 @@ void loop() {
 
 ```
 
+# big HTML => CPP & using as array[] [video](https://youtu.be/CPCTf20Sbvw)
+
 <p float="left">
   <img src="img/1 (1).png" width="49%" />
   <img src="img/1 (2).png" width="49%" />
@@ -138,6 +140,10 @@ in Bionary [index_html_gz.h (Generated header file):]
   <img src="img/2 (5).png" width="49%" />
   <img src="img/2 (6).png" width="49%" />
 </p>
+
+# alternate process (use .h file without directly convert using cmd) [video](https://youtu.be/eHxkZ7poKHc)
+
+advantage of this process - it's suitable for using javascript 
 
 # ❌ HTML in ESP32's SPIFFS (SPI Flash File System)
 
