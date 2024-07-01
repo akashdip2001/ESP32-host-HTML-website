@@ -376,3 +376,158 @@ void loop() {
   <img src="img/4G LTE (1).jpg" width="45%" />
   <img src="img/4G LTE (2).jpg" width="45%" />
 </p>
+
+# Alternate process (Port Forward)
+
+If you don't have a router and want to port forward directly through a mobile hotspot on your Windows PC, the process is more complex because most mobile carriers do not support port forwarding due to the way mobile networks handle IP addresses and NAT (Network Address Translation). However, there are workarounds that might help you achieve similar results.
+
+### Using a VPN with Port Forwarding
+
+1. Find a VPN Service that Supports Port Forwarding:
+   - Some VPN services offer port forwarding as part of their features. Examples include PureVPN, Private Internet Access (PIA), and AirVPN.
+
+2. Sign Up and Install the VPN:
+   - Sign up for the VPN service.
+   - Download and install the VPN client on your Windows PC.
+
+3. Configure Port Forwarding in the VPN:
+   - Follow the VPN provider’s instructions to set up port forwarding. This usually involves logging into your VPN account, selecting a port to forward, and configuring the VPN client.
+
+4. Connect to the VPN:
+   - Use the VPN client to connect to a server that supports port forwarding.
+   - Note the external IP address provided by the VPN.
+
+5. Adjust Windows Firewall Settings:
+   - Ensure the Windows firewall allows traffic through the forwarded port:
+     - Open Control Panel.
+     - Go to System and Security > Windows Defender Firewall > Advanced Settings.
+     - Click on Inbound Rules, then New Rule.
+     - Choose Port, then Next.
+     - Select TCP, enter the port number, and click Next.
+     - Allow the connection, then click Next.
+     - Choose when to apply this rule (Domain, Private, Public), then click Next.
+     - Give the rule a name and click Finish.
+
+6. Test the Connection:
+   - Use a tool like [CanYouSeeMe](http://canyouseeme.org) to verify that the port is open and accessible.
+
+### Using a Remote Server as a Proxy
+
+Another approach is to use a remote server to act as a proxy for your local device. This involves setting up a server (such as a VPS) that forwards traffic to your local device.
+
+1. Set Up a VPS:
+   - Sign up for a VPS (Virtual Private Server) with a provider like DigitalOcean, AWS, or Linode.
+
+2. Configure SSH Tunneling:
+   - Use SSH tunneling to forward traffic from the VPS to your local device.
+   - Open Command Prompt on your Windows PC.
+   - Use an SSH client like OpenSSH or PuTTY to create a tunnel. For example:
+    
+     ```
+     ssh -R [VPS_PORT]:localhost:[LOCAL_PORT] [VPS_USER]@[VPS_IP]
+     ```
+     
+     Replace [VPS_PORT] with the port you want to forward on the VPS, [LOCAL_PORT] with the local port your NodeMCU service is using, [VPS_USER] with your VPS username, and [VPS_IP] with your VPS IP address.
+
+3. Access Your Service:
+   - Access your service using the VPS IP and forwarded port.
+
+### Using Ngrok
+
+Ngrok is a tool that creates secure tunnels to your localhost, making it accessible over the internet.
+
+1. Install Ngrok:
+   - Download and install Ngrok from [ngrok.com](https://ngrok.com).
+
+2. Set Up Ngrok:
+   - Open Command Prompt.
+   - Run the following command to create a tunnel to your local port:
+    
+     ```
+     ngrok http [LOCAL_PORT]
+     ```
+     
+     Replace [LOCAL_PORT] with the port your NodeMCU service is using.
+
+3. Access Your Service:
+   - Ngrok will provide a public URL that you can use to access your local service.
+
+By using one of these methods, you can achieve port forwarding or similar functionality without needing a traditional router.
+
+Ngrok is too costly, you can consider some free alternatives that offer similar tunneling services. Here are a few options:
+
+### LocalTunnel
+
+LocalTunnel provides a simple way to expose a local server to the internet. It’s free and easy to set up.
+
+1. Install LocalTunnel:
+   - Open Command Prompt.
+   - Install LocalTunnel using npm (you need Node.js installed):
+  
+    ```sh
+     npm install -g localtunnel
+    ```
+    
+2. Start LocalTunnel:
+   - Run the following command to create a tunnel:
+     
+     ```sh
+     lt --port [LOCAL_PORT]
+     ```
+     
+     Replace [LOCAL_PORT] with the port your NodeMCU service is using.
+
+4. Access Your Service:
+   - LocalTunnel will provide a public URL that you can use to access your local service.
+
+### Serveo
+
+Serveo is a free SSH-based tunneling service.
+
+1. Set Up Serveo:
+   - Open Command Prompt.
+   - Run the following command:
+    
+     ```sh
+     ssh -R 80:localhost:[LOCAL_PORT] serveo.net
+     ```
+     
+     Replace [LOCAL_PORT] with the port your NodeMCU service is using.
+
+2. Access Your Service:
+   - Serveo will provide a public URL that you can use to access your local service.
+
+### Telebit
+
+Telebit is another free service for exposing your local server to the internet.
+
+1. Install Telebit:
+   - Open Command Prompt.
+   - Install Telebit using npm (you need Node.js installed):
+    
+     ```sh
+     npm install -g telebit
+     ```
+     
+2. Configure Telebit:
+   - Run the following command to configure Telebit:
+    
+     ```sh
+     telebit init
+     ```
+     
+   - Follow the prompts to set up your Telebit account and configuration.
+
+3. Start Telebit:
+   - Run the following command to start the tunnel:
+    
+     ```sh
+     telebit http [LOCAL_PORT]
+     ```
+     
+     Replace [LOCAL_PORT] with the port your NodeMCU service is using.
+
+4. Access Your Service:
+   - Telebit will provide a public URL that you can use to access your local service.
+
+These alternatives provide free options to expose your local services to the internet, similar to Ngrok but without the cost.
