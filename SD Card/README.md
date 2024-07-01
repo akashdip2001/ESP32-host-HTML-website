@@ -106,13 +106,14 @@ void setup() {
   server.begin();
 }
 
-<p float="left">
-  <img src="img/SD web (1).jpg" width="45%" />
-  <img src="img/SD web (2).jpg" width="45%" />
-</p>
-
 void loop() {
   // Nothing to do here
 }
+
 ```
+
+<p float="left">
+  <img src="SD web (1).jpg" width="45%" />
+  <img src="SD web (2).jpg" width="45%" />
+</p>
 
