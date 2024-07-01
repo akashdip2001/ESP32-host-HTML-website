@@ -377,9 +377,11 @@ void loop() {
   <img src="img/4G LTE (2).jpg" width="45%" />
 </p>
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 # Alternate process (Port Forward)
 
-If you don't have a router and want to port forward directly through a mobile hotspot on your Windows PC, the process is more complex because most mobile carriers do not support port forwarding due to the way mobile networks handle IP addresses and NAT (Network Address Translation). However, there are workarounds that might help you achieve similar results.
+If you don't have a 🌐 router and want to port forward directly through a mobile hotspot on your Windows PC, the process is more complex because most mobile carriers do not support port forwarding due to the way mobile networks handle IP addresses and NAT (Network Address Translation). However, there are workarounds that might help you achieve similar results.
 
 ### Using a VPN with Port Forwarding
 
@@ -411,7 +413,7 @@ If you don't have a router and want to port forward directly through a mobile ho
 6. Test the Connection:
    - Use a tool like [CanYouSeeMe](http://canyouseeme.org) to verify that the port is open and accessible.
 
-### Using a Remote Server as a Proxy
+### 🌐 Using a Remote Server as a Proxy
 
 Another approach is to use a remote server to act as a proxy for your local device. This involves setting up a server (such as a VPS) that forwards traffic to your local device.
 
@@ -432,7 +434,7 @@ Another approach is to use a remote server to act as a proxy for your local devi
 3. Access Your Service:
    - Access your service using the VPS IP and forwarded port.
 
-### Using Ngrok
+### 🌐 Using Ngrok
 
 Ngrok is a tool that creates secure tunnels to your localhost, making it accessible over the internet.
 
@@ -456,7 +458,7 @@ By using one of these methods, you can achieve port forwarding or similar functi
 
 Ngrok is too costly, you can consider some free alternatives that offer similar tunneling services. Here are a few options:
 
-### LocalTunnel
+### 🌐 LocalTunnel
 
 LocalTunnel provides a simple way to expose a local server to the internet. It’s free and easy to set up.
 
@@ -480,7 +482,7 @@ LocalTunnel provides a simple way to expose a local server to the internet. It�
 4. Access Your Service:
    - LocalTunnel will provide a public URL that you can use to access your local service.
 
-### Serveo
+### 🌐 Serveo
 
 Serveo is a free SSH-based tunneling service.
 
@@ -497,7 +499,7 @@ Serveo is a free SSH-based tunneling service.
 2. Access Your Service:
    - Serveo will provide a public URL that you can use to access your local service.
 
-### Telebit
+### 🌐 Telebit
 
 Telebit is another free service for exposing your local server to the internet.
 
