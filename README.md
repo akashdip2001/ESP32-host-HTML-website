@@ -249,6 +249,10 @@ HTTP server started
 
 # ✅✅✅ using SD Card ♦️ module [my video](https://youtu.be/ySJt3QGyr9w)
 
+<p float="left">
+  <img src="img/youtube_1.jpg" width="100%" />
+</p>
+
 # guide [video_1](https://youtu.be/JxjZXf7veMM) , [video_2](https://youtu.be/naZYr5vY4Sg) , [video_3](https://youtu.be/mFsLlakhVL8)
 
 To host a website using your ESP-WROOM-32 module and a microSD card, you can follow these general steps:
