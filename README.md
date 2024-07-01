@@ -533,3 +533,196 @@ Telebit is another free service for exposing your local server to the internet.
    - Telebit will provide a public URL that you can use to access your local service.
 
 These alternatives provide free options to expose your local services to the internet, similar to Ngrok but without the cost.
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+<p float="left">
+  <img src="img/4G LTE (1).jpg" width="45%" />
+  <img src="img/4G LTE (2).jpg" width="45%" />
+</p>
+
+To connect your ESP32 to the internet using the SIM800L module and make your website accessible globally, you'll need to configure the ESP32 to communicate with the SIM800L and establish a GPRS connection. Below is an outline of the steps and the modified code to achieve this.
+
+### Requirements:
+
+  - ESP32 board.
+  - SIM800L module with a valid SIM card and data plan.
+  - Connection wires and power supply for the SIM800L module.
+
+### Wiring:
+
+  - SIM800L -> ESP32VCC -> 3.7V (ensure proper voltage for SIM800L)
+  - GND -> GND
+  - TXD -> RX (GPIO 16)
+  - RXD -> TX (GPIO 17)
+
+### Code:
+
+```cpp
+#include <WiFi.h>
+#include <SPI.h>
+#include <SD.h>
+#include <ESPAsyncWebServer.h>
+#include <SoftwareSerial.h>
+
+// Pin Definitions
+#define SD_CS    5
+#define SD_SCK   18
+#define SD_MOSI  23
+#define SD_MISO  19
+
+// SIM800L configuration
+#define SIM800L_RX 16
+#define SIM800L_TX 17
+
+// Uncomment the appropriate settings for your SIM card
+// Jio
+// const char* apn = "jionet";
+// const char* gprsUser = "";
+// const char* gprsPass = "";
+
+// Vi (Vodafone Idea)
+// const char* apn = "vi.internet";
+// const char* gprsUser = "";
+// const char* gprsPass = "";
+
+// Airtel
+// const char* apn = "airtelgprs.com";
+// const char* gprsUser = "";
+// const char* gprsPass = "";
+
+// BSNL
+const char* apn = "bsnlnet";
+const char* gprsUser = "";
+const char* gprsPass = "";
+
+SoftwareSerial sim800l(SIM800L_RX, SIM800L_TX);
+AsyncWebServer server(80);
+
+void setup() {
+  Serial.begin(115200);
+  sim800l.begin(9600);
+  
+  // Initialize SD card
+  if (!SD.begin(SD_CS)) {
+    Serial.println("Card Mount Failed");
+    return;
+  }
+  
+  // Check if index.html exists
+  if (!SD.exists("/index.html")) {
+    Serial.println("index.html missing");
+    return;
+  }
+
+  // Connect to GPRS
+  if (connectToGPRS()) {
+    Serial.println("GPRS connected");
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
+  } else {
+    Serial.println("GPRS connection failed");
+    return;
+  }
+
+  // Route for serving files from SD card
+  server.onNotFound([](AsyncWebServerRequest *request){
+    String path = request->url();
+
+    // Check if SD card is still connected
+    if (!SD.begin(SD_CS)) {
+      request->send(503, "text/html", "<html><body><h1>SD card not connected</h1></body></html>");
+      return;
+    }
+
+    // Serve index.html by default if path ends with '/'
+    if(path.endsWith("/")) path += "index.html";
+
+    String contentType = "text/plain";
+    if(path.endsWith(".html")) contentType = "text/html";
+    else if(path.endsWith(".css")) contentType = "text/css";
+    else if(path.endsWith(".js")) contentType = "application/javascript";
+
+    File file = SD.open(path.c_str());
+    if(file){
+      request->send(SD, path.c_str(), contentType);
+      file.close();
+    } else {
+      request->send(404, "text/html", "<html><body><h1>File not found</h1></body></html>");
+    }
+  });
+
+  // Start server
+  server.begin();
+}
+
+void loop() {
+  // Nothing to do here
+}
+
+bool connectToGPRS() {
+  delay(3000); // Wait for SIM800L to initialize
+  sim800l.println("AT");
+  delay(100);
+  if (sim800l.find("OK")) {
+    Serial.println("Module is ready");
+  } else {
+    Serial.println("Module is not responding");
+    return false;
+  }
+
+  sim800l.println("AT+CSQ"); // Signal quality
+  delay(500);
+  if (sim800l.find("OK")) {
+    Serial.println("Signal quality checked");
+  }
+
+  sim800l.println("AT+CGATT?"); // Attach to GPRS
+  delay(500);
+  if (sim800l.find("OK")) {
+    Serial.println("Attached to GPRS");
+  }
+
+  sim800l.print("AT+CSTT=\"");
+  sim800l.print(apn);
+  sim800l.print("\",\"");
+  sim800l.print(gprsUser);
+  sim800l.print("\",\"");
+  sim800l.print(gprsPass);
+  sim800l.println("\"");
+  delay(500);
+  if (sim800l.find("OK")) {
+    Serial.println("APN set");
+  }
+
+  sim800l.println("AT+CIICR"); // Bring up wireless connection
+  delay(3000);
+  if (sim800l.find("OK")) {
+    Serial.println("Wireless connection brought up");
+  } else {
+    Serial.println("Failed to bring up wireless connection");
+    return false;
+  }
+
+  sim800l.println("AT+CIFSR"); // Get IP address
+  delay(1000);
+  String ip;
+  if (sim800l.find("OK")) {
+    ip = sim800l.readString();
+    Serial.print("IP address: ");
+    Serial.println(ip);
+    WiFi.config(IPAddressFromString(ip));
+    return true;
+  } else {
+    Serial.println("Failed to get IP address");
+    return false;
+  }
+}
+
+IPAddress IPAddressFromString(String ipStr) {
+  int parts[4];
+  sscanf(ipStr.c_str(), "%d.%d.%d.%d", &parts[0], &parts[1], &parts[2], &parts[3]);
+  return IPAddress(parts[0], parts[1], parts[2], parts[3]);
+}
+```
+
