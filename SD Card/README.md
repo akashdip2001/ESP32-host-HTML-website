@@ -432,3 +432,159 @@ void loop() {
 - **Localization:** Depending on your application, you might want to provide multilingual support for these messages.
 
 By incorporating these changes into your ESP-WROOM-32 web server code, you will provide clear feedback directly in the browser when the microSD card is not connected or when the `index.html` file is missing, enhancing the user experience and troubleshooting process. Adjust the pin numbers (`SD_CS`, `SD_SCK`, `SD_MOSI`, `SD_MISO`) according to your specific hardware setup.
+
+---
+
+If the IP address of your ESP-WROOM-32 is not showing in the Serial monitor, it indicates that the device might not be successfully connecting to the Wi-Fi network. Here’s how you can ensure that the ESP-WROOM-32 connects to Wi-Fi and displays its IP address in the Serial monitor:
+
+### Troubleshooting Steps
+
+1. **Check Wi-Fi Credentials:**
+   - Ensure that the `ssid` (Wi-Fi network name) and `password` (Wi-Fi password) variables in your code are correctly set to match your local Wi-Fi network credentials.
+
+2. **Enable Serial Output:**
+   - Make sure that you have `Serial.begin(115200);` in your `setup()` function to initialize serial communication with the baud rate set to 115200 (or adjust according to your preference).
+
+3. **Print Wi-Fi Connection Status:**
+   - After attempting to connect to Wi-Fi (`WiFi.begin(ssid, password);`), add a print statement to monitor the connection status. For example:
+     ```cpp
+     Serial.print("Connecting to ");
+     Serial.println(ssid);
+
+     int tries = 0;
+     while (WiFi.status() != WL_CONNECTED) {
+       delay(1000);
+       Serial.print(".");
+       tries++;
+       if (tries > 20) {
+         Serial.println("Failed to connect to WiFi");
+         break;
+       }
+     }
+
+     if (WiFi.status() == WL_CONNECTED) {
+       Serial.println("");
+       Serial.println("WiFi connected");
+       Serial.print("IP address: ");
+       Serial.println(WiFi.localIP());
+     }
+     ```
+
+4. **Check Serial Monitor Settings:**
+   - Ensure that the baud rate in your Serial monitor matches the baud rate specified in your code (`Serial.begin()`). Open the Serial monitor and set the baud rate accordingly.
+
+5. **Verify Hardware Connections:**
+   - Double-check the physical connections between the ESP-WROOM-32 and any peripherals (such as the microSD card module and Wi-Fi antenna).
+
+6. **Restart ESP-WROOM-32:**
+   - If everything seems correct but you're still not getting the IP address, try restarting the ESP-WROOM-32 module by power cycling it.
+
+### Example Code Snippet with IP Address Printing
+
+Here’s how you can modify your `setup()` function to include detailed Wi-Fi connection status and IP address printing:
+
+```cpp
+#include <WiFi.h>
+#include <SPI.h>
+#include <SD.h>
+#include <ESPAsyncWebServer.h>
+
+// Pin Definitions
+#define SD_CS    5   // Replace with the GPIO pin number connected to CS of microSD card module
+#define SD_SCK   18  // Replace with the GPIO pin number connected to SCK of microSD card module
+#define SD_MOSI  23  // Replace with the GPIO pin number connected to MOSI of microSD card module
+#define SD_MISO  19  // Replace with the GPIO pin number connected to MISO of microSD card module
+
+const char* ssid = "YourWiFiSSID";
+const char* password = "YourWiFiPassword";
+
+AsyncWebServer server(80);
+
+void setup() {
+  // Initialize Serial and SD card
+  Serial.begin(115200);
+  
+  // Print Wi-Fi connection details
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  int tries = 0;
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.print(".");
+    tries++;
+    if (tries > 20) {
+      Serial.println("Failed to connect to WiFi");
+      break;
+    }
+  }
+
+  if (WiFi.status() == WL_CONNECTED) {
+    Serial.println("");
+    Serial.println("WiFi connected");
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
+  } else {
+    Serial.println("WiFi connection failed");
+    return;
+  }
+
+  // Initialize SD card
+  if (!SD.begin(SD_CS)) {
+    Serial.println("Card Mount Failed");
+    return;
+  }
+  
+  // Check if index.html exists
+  if (!SD.exists("/index.html")) {
+    Serial.println("index.html missing");
+    return;
+  }
+
+  // Route for serving files from SD card
+  server.onNotFound([](AsyncWebServerRequest *request){
+    String path = request->url();
+
+    // Check if SD card is still connected
+    if (!SD.begin(SD_CS)) {
+      request->send(503, "text/html", "<html><body><h1>SD card not connected</h1></body></html>");
+      return;
+    }
+
+    // Serve index.html by default if path ends with '/'
+    if(path.endsWith("/")) path += "index.html";
+
+    String contentType = "text/plain";
+    if(path.endsWith(".html")) contentType = "text/html";
+    else if(path.endsWith(".css")) contentType = "text/css";
+    else if(path.endsWith(".js")) contentType = "application/javascript";
+
+    File file = SD.open(path.c_str());
+    if(file){
+      request->send(SD, path.c_str(), contentType);
+      file.close();
+    } else {
+      request->send(404, "text/html", "<html><body><h1>File not found</h1></body></html>");
+    }
+  });
+
+  // Start server
+  server.begin();
+}
+
+void loop() {
+  // Nothing to do here
+}
+```
+
+### Key Points to Remember
+
+- **Serial Monitoring:** Ensure that you are correctly monitoring the Serial output at the specified baud rate (`Serial.begin(115200);` in this example).
+
+- **Wi-Fi Connection:** The ESP32 may take a few seconds to establish a connection to the Wi-Fi network. Monitor the Serial monitor for the connection status messages.
+
+- **IP Address:** Upon successful connection to Wi-Fi (`WiFi.status() == WL_CONNECTED`), the IP address (`WiFi.localIP()`) should be printed in the Serial monitor.
+
+By following these steps and monitoring the Serial monitor output, you should be able to diagnose why the IP address of your ESP-WROOM-32 is not showing and take appropriate actions to resolve the issue. Adjust the code and settings as necessary for your specific setup and requirements.
