@@ -569,9 +569,8 @@ To connect your ESP32 to the internet using the SIM800L module and make your web
 #include <SPI.h>
 #include <SD.h>
 #include <ESPAsyncWebServer.h>
-#include <SoftwareSerial.h>
 
-// Pin Definitions
+// Pin Definitions for SD Card
 #define SD_CS    5
 #define SD_SCK   18
 #define SD_MOSI  23
@@ -583,14 +582,14 @@ To connect your ESP32 to the internet using the SIM800L module and make your web
 
 // Uncomment the appropriate settings for your SIM card
 // Jio
-// const char* apn = "jionet";
-// const char* gprsUser = "";
-// const char* gprsPass = "";
+const char* apn = "jionet";
+const char* gprsUser = "";
+const char* gprsPass = "";
 
 // Vi (Vodafone Idea)
-// const char* apn = "vi.internet";
-// const char* gprsUser = "";
-// const char* gprsPass = "";
+ //const char* apn = "vi.internet";
+ //const char* gprsUser = "";
+ //const char* gprsPass = "";
 
 // Airtel
 // const char* apn = "airtelgprs.com";
@@ -598,16 +597,16 @@ To connect your ESP32 to the internet using the SIM800L module and make your web
 // const char* gprsPass = "";
 
 // BSNL
-const char* apn = "bsnlnet";
-const char* gprsUser = "";
-const char* gprsPass = "";
+//const char* apn = "bsnlnet";
+//const char* gprsUser = "";
+//const char* gprsPass = "";
 
-SoftwareSerial sim800l(SIM800L_RX, SIM800L_TX);
+HardwareSerial sim800l(1); // Use UART1 for SIM800L
 AsyncWebServer server(80);
 
 void setup() {
   Serial.begin(115200);
-  sim800l.begin(9600);
+  sim800l.begin(9600, SERIAL_8N1, SIM800L_RX, SIM800L_TX);
   
   // Initialize SD card
   if (!SD.begin(SD_CS)) {
