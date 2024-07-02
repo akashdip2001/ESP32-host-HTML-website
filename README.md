@@ -734,7 +734,7 @@ IPAddress IPAddressFromString(String ipStr) {
 
 ### ESP32 -> SD Card Module
 
-   - 3.3V -> VCC
+   - 3.3V -> VCC ,if voltage ⚡ ic present=> use 5 volt
    - GND -> GND
    - GPIO 5 -> CS
    - GPIO 18 -> SCK
