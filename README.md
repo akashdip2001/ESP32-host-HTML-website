@@ -370,24 +370,21 @@ void loop() {
 }
 
 ```
-
 <p float="left">
   <img src="img/SD web (1).jpg" width="45%" />
   <img src="img/SD web (2).jpg" width="45%" />
 </p>
-<p float="left">
-  <img src="img/sd.jpg" width="100%" />
-</p>
-# 🌐 Working on  This
+
+to make it portable using lithium ion batteries - and connect it with 5 voltage ⚡ pin in is ESP32 , BECAUSE IN THE SD CARD MODULE THERE WAS A VOLTAGE IC . otherwise you can supply 3 voltage from ESP32
+
 
 <p float="left">
-  <img src="img/4G LTE (1).jpg" width="45%" />
-  <img src="img/4G LTE (2).jpg" width="45%" />
-</p>
+  <img src="img/sd.jpg" width="100%" />
+</p> 
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-# Alternate process (Port Forward)
+# LAN => WAN (Port Forward)
 
 If you don't have a 🌐 router and want to port forward directly through a mobile hotspot on your Windows PC, the process is more complex because most mobile carriers do not support port forwarding due to the way mobile networks handle IP addresses and NAT (Network Address Translation). However, there are workarounds that might help you achieve similar results.
 
@@ -565,6 +562,10 @@ To connect your ESP32 to the internet using the SIM800L module and make your web
   - GND -> GND
   - TXD -> RX (GPIO 16)
   - RXD -> TX (GPIO 17)
+
+<p float="left">
+  <img src="img/sim800l_5.jpg" width="100%" />
+</p>
 
 ### Code:
 
