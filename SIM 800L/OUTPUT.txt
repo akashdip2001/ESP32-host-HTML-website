@@ -1,0 +1,79 @@
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:1288
+load:0x40078000,len:13872
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3048
+entry 0x40080590
+Module is ready
+Signal quality checked
+Attached to GPRS
+APN set
+Wireless connection brought up
+IP address: 
+T+CIICZ
+
+ERROAT
+
+
+AT+CGATT?
+
+OK
+
+OK
+T+CIICR
+
+ERROAT
+
+
+AT+CGATT?
+
+OK
+
+OK
+T+CIICR
+
+ERRCR
+
+ERROAT
+
+
+AT+CGATT?
+
+OK
+
+OK
+
+OK
+
+ErROR
+OK
+
+ERROR
+CR
+
+ERROAT
+
+
+AT+CGA@T+D@
+DRe D,"",""
+AT+CIICR
+CR
+
+ERROAT
+
+
+AT+CGA@T+@@R
+
+ERROR
+GA
+ERROR
+D@
+
+ERROR
+DATQ CIFSR
+
+GPRS connected
+IP address: 94.160.1.64
