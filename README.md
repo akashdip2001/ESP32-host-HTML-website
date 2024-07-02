@@ -1,3 +1,7 @@
+<p float="left">
+  <img src="img/ESP32-38 PIN-DEVBOARD.png" width="100%" />
+</p>
+
 # ESP32-host-HTML-website
 
 # ✅ HTML in CPP
