@@ -375,7 +375,9 @@ void loop() {
   <img src="img/SD web (1).jpg" width="45%" />
   <img src="img/SD web (2).jpg" width="45%" />
 </p>
-
+<p float="left">
+  <img src="img/sd.jpg" width="100%" />
+</p>
 # 🌐 Working on  This
 
 <p float="left">
@@ -746,3 +748,15 @@ IPAddress IPAddressFromString(String ipStr) {
    - GND -> GND
    - GPIO 16 -> TXD
    - GPIO 17 -> RXD
+
+
+<p float="left">
+  <img src="img/sim800l.jpg" width="49%" />
+  <img src="img/sim800l_2.jpg" width="49%" />
+</p>
+
+
+<p float="left">
+  <img src="img/sim800l_3.jpg" width="49%" />
+  <img src="img/sim800l_4.jpg" width="49%" />
+</p>
