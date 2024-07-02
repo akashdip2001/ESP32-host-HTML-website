@@ -732,3 +732,18 @@ IPAddress IPAddressFromString(String ipStr) {
 }
 ```
 
+### ESP32 -> SD Card Module
+
+   - 3.3V -> VCC
+   - GND -> GND
+   - GPIO 5 -> CS
+   - GPIO 18 -> SCK
+   - GPIO 23 -> MOSI
+   - GPIO 19 -> MISO
+   
+### ESP32 -> SIM800L Module
+
+   - 3.7V -> VCC
+   - GND -> GND
+   - GPIO 16 -> TXD
+   - GPIO 17 -> RXD
