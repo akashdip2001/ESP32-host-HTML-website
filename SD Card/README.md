@@ -117,3 +117,6 @@ void loop() {
   <img src="SD web (2).jpg" width="45%" />
 </p>
 
+<p float="left">
+  <img src="../img/sd.jpg" width="100%" />
+</p>
