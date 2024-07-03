@@ -811,4 +811,4 @@ IPAddress IPAddressFromString(String ipStr) {
 
 # NB :  JIO NOT WORKING WITH SIM-800L : Jio only works on 4G LTE network 🛜 and SIM800L works on 2G GSM/GPRS network 🛜 wait for Complete video 📷 
 
-It's just a short video - i can just deliver the concept of this project 🌱
+the LAN server is working good you can try the code, BUT USING THE SIM-800L MODULE - YOU NEED A STABLE AND GOOD INTERNET CONNECTION otherwise your website is very difficult to load through internet. MAYBE IN FUTURE I OPTIMISE THE CODE.
