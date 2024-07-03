@@ -567,6 +567,47 @@ To connect your ESP32 to the internet using the SIM800L module and make your web
   - TXD -> RX (GPIO 16)
   - RXD -> TX (GPIO 17)
 
+# Power supply => SIM 800L => 4.2 v
+
+### Components Needed
+   - ( R1 ) = 1.6kΩ resistor
+   - ( R2 ) = 8.4kΩ resistor
+   
+### Circuit Diagram
+
+```cpp
+   5V
+    |
+   [R1]
+    |
+   Vout (4.2V)
+    |
+   [R2]
+    |
+   GND
+```
+
+# or
+
+### Components Needed
+
+   - ( R1 ) = 1.5kΩ resistor
+   - ( R2 ) = 8.2kΩ resistor
+   
+### Circuit Diagram
+
+```cpp
+   5V
+    |
+   [R1] (1.5kΩ)
+    |
+   Vout (4.225V)
+    |
+   [R2] (8.2kΩ)
+    |
+  GND
+```
+
 <p float="left">
   <img src="img/sim800l_5.jpg" width="100%" />
 </p>
