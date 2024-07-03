@@ -808,3 +808,7 @@ IPAddress IPAddressFromString(String ipStr) {
   <img src="img/sim800l_3.jpg" width="49%" />
   <img src="img/sim800l_4.jpg" width="49%" />
 </p>
+
+# NB :  JIO NOT WORKING WITH SIM-800L : Jio only works on 4G LTE network 🛜 and SIM800L works on 2G GSM/GPRS network 🛜 wait for Complete video 📷 
+
+It's just a short video - i can just deliver the concept of this project 🌱
