@@ -816,3 +816,7 @@ IPAddress IPAddressFromString(String ipStr) {
 </p>
 
 the LAN server is working good you can try the code [video](https://youtu.be/ySJt3QGyr9w) , BUT USING THE SIM-800L MODULE - YOU NEED A STABLE AND GOOD 2G GSM INTERNET CONNECTION otherwise your website is very difficult to load through internet. MAYBE IN FUTURE I OPTIMISE THE CODE.
+
+<p float="left">
+  <img src="img/GHL.jpg" width="100%" />
+</p>
