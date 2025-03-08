@@ -388,6 +388,14 @@ to make it portable using lithium ion batteries - and connect it with 5 voltage 
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
+
+<div style="display: flex; align-items: center; gap: 10px;" align="center">
+    
+## ⭐ [NAS-with-ESP32](https://github.com/akashdip2001/NAS-with-ESP32) ⭐
+</div>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
 # LAN => WAN (Port Forward)
 
 If you don't have a 🌐 router and want to port forward directly through a mobile hotspot on your Windows PC, the process is more complex because most mobile carriers do not support port forwarding due to the way mobile networks handle IP addresses and NAT (Network Address Translation). However, there are workarounds that might help you achieve similar results.
