@@ -390,8 +390,18 @@ to make it portable using lithium ion batteries - and connect it with 5 voltage 
 
 
 <div style="display: flex; align-items: center; gap: 10px;" align="center">
-    
+
+---
+
 ## ⭐ [NAS-with-ESP32](https://github.com/akashdip2001/NAS-with-ESP32) ⭐
+
+---
+
+</br>
+</br>
+
+[![NAS System](https://github.com/user-attachments/assets/45ffbb73-7364-4d2a-aaf8-0b6f8698d352)](https://github.com/akashdip2001/NAS-with-ESP32)
+
 </div>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
